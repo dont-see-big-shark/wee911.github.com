@@ -806,7 +806,7 @@ textarea {
 .body-7 .triangle{width: 0;height: 0;border-style: solid;border-width:  14px 0 14px 23px;border-color: transparent  transparent transparent #fff;position: absolute;z-index: 10;right:407px;top:270px;}
 
 /*body-9*/
-footer{background:#32363e;color:#fff;width:100%;text-align: center;font-family:黑体;padding-top:90px; }
+footer{background:#32363e;color:#fff;width:100%;text-align: center;font-family:黑体;padding-top:90px;min-width: 1280px;}
 footer h2{font-size:21px;line-height: 40px;}
 footer p{font-size:12px;line-height: 18px;}
 footer .email{width:512px;height:40px;margin: 0 auto;margin-top: 26px;}
