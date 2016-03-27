@@ -1,0 +1,37 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task19</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <input type="text" id="input" placeholder="10 - 100">
+    <button type="button" id="shift" class="btn-custom">左出</button>
+    <button type="button" id="pop" class="btn-custom">右出</button>
+    <button type="button" id="unshift" class="btn-custom">左进</button>
+    <button type="button" id="push" class="btn-custom">右进</button>
+    <button type="button" id="sort" class="btn-custom">排序</button>
+    <div id="result"></div>
+    <script>
+        var manipulate = {
+            array : [45, 23 , 40, 20, 50, 45, 87, 13, 34, 95, 94, 76, 98, 32, 43, 49, 26, 23, 56, 74, 92, 81, 63, 23, 64, 74, 14, 43, 29, 40, 53, 75, 32, 87, 45, 75, 39, 50, 10, 96, 45, 35, 64, 53, 65, 12, 34, 86, 48, 35, 52, 14, 54, 63, 91, 30, 40, 10, 96, 61, 40, 80, 15, 20, 47, 88, 100],
+            result : document.getElementById('result'),
+            render : function (data) {
+                var list = "";
+                data.forEach(function(el,i){
+                    list += "<li>"+el+"</li>";
+                });
+                this.result.innerHTML = list;
+            },
+
+            init : function(){
+                this.render(this.array)
+            }
+        };
+        manipulate.init()
+
+    </script>
+</body>
+</html>

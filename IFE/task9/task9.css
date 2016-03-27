@@ -1,0 +1,466 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul, li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden
+}
+
+.clearfix {
+    *+height: 1%;
+}
+
+.header {
+    width: 100%;
+    height: 56px;
+    background: #2189bf;
+}
+
+.header > div {
+    width: 1280px;
+    height: 56px;
+    margin: 0 auto;
+}
+
+.header div img {
+    margin-left: 50px;
+    margin-top: 10px;
+    float: left;
+}
+
+.header > div > .search {
+    width: 313px;
+    height: 28px;
+    border-radius: 13px;
+    -webkit-border-radius: 13px;
+    background: #fff;
+    float: left;
+    margin-top: 14px;
+    margin-left: 725px;
+}
+
+.header .search input {
+    padding-left: 40px;
+    width: 313px;
+    height: 28px;
+    border-radius: 13px;
+    -webkit-border-radius: 13px;
+    outline: 0;
+    border: none;
+    background: url("search.png") no-repeat 14px;
+}
+
+.header .login {
+    float: left;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.header .login span {
+    padding-left: 16px;
+    background: url("manlogo.png") no-repeat;
+    color: #fff;
+}
+
+/*left-block*/
+.left-block .personal .name {
+    font-size: 16px;
+    color: #fff;
+}
+
+.left-block .personal .name span {
+    float: right;
+    margin-top: 24px;
+}
+
+.left-block .personal {
+    width: 130px;
+    margin: 0 auto;
+    margin-top: 16px;
+}
+
+.left-block .personal .mark, .left-block .personal .fans {
+    float: left;
+    color: #6e8095;
+    line-height: 18px;
+    width: 50%;
+}
+
+.left-block .cn {
+    font-family: "Songti SC";
+}
+
+.left-block .personal .info {
+    text-align: center;
+    margin-top: 24px;
+}
+
+.left-block .report {
+    background: #383d4e;
+    width: 100%;
+    height: 192px;
+    margin-top: 24px;
+}
+
+.left-block .personal .mark {
+    text-align: left;
+}
+
+.left-block .personal .fans {
+    text-align: right;
+}
+
+.left-block .content {
+    margin: 0 auto;
+    width: 130px;
+    color: #6e8095;
+    font-size: 12px;
+    line-height: 32px;
+}
+
+.left-block .report .title {
+    padding-left: 20px;
+    background: url("icon1.png") no-repeat left;
+    color: #fff;
+}
+
+.left-block .report .details {
+    margin-left: 22px;
+}
+
+.left-block .report .details > div {
+    padding-left: 20px;
+    background: url("arrowleft.png") no-repeat left center;
+}
+
+.left-block .report .details > .active {
+    background: url("arrowdown.png") no-repeat left 12px;
+    color: #fff;
+}
+
+.left-block .report .details > div > span {
+    padding-left: 20px;
+    background: url("folder1.png") no-repeat left;
+}
+
+.left-block .report .details > div li {
+    padding-left: 20px;
+    background: url(file1.png) no-repeat left;
+}
+
+.left-block .report .details > .active > span {
+    background: url("folder2.png") no-repeat left;
+}
+
+.left-block .report .details > div li:first-child {
+    background: url('file2.png') no-repeat left;
+}
+
+.left-block .report .details > div li:last-child {
+    background: url('file1.png') no-repeat left;
+    color: #6e8095
+}
+
+.left-block .mark .title,.left-block .photo .title,.left-block .grow .title{padding-left: 20px;background: url('icon2.png') no-repeat left; }
+
+.left-block .share .title{padding-left: 20px;background: url('icon3.png') no-repeat left;}
+.left-block .account .title{padding-left: 20px;background: url('icon6.png') no-repeat left;}
+
+.container {
+    width: 1280px;
+    margin: 0 auto;
+}
+
+.container, .left-block, .right-block {
+    height: 1213px;
+}
+
+.left-block {
+    width: 260px;
+    background: #2a2e3d;
+    float: left;
+}
+
+.right-block {
+    width: 1020px;
+    background: #eeedec;
+    float: left;
+}
+
+/*main ends*/
+.right-block1 {
+    height: 31px;
+    background: white;
+    font-size: 12px;
+    line-height: 31px;
+    font-family: 黑体;
+}
+
+.right-block1 p {
+    padding-left: 30px;
+    color: #aaaaaa;
+}
+
+.right-block1 p span {
+    color: #6898c2;
+}
+
+/*right-block1 ends*/
+.right-block2 {
+    width: 891px;
+    height: 86px;
+    border: #ababab 1px solid;
+    background: white;
+    margin: 0 auto;
+    margin-top: 20px;
+    font-size: 12px;
+    font-family: 黑体;
+    color: #aaaaaa;
+}
+
+.right-block2-1 {
+    width: 122px;
+    height: 26px;
+    margin-top: 16px;
+    margin-left: 30px;
+    line-height: 26px;
+    float: left;
+}
+
+.right-block2-1 p, .right-block2-1 div {
+    float: left;
+}
+
+.right-block2-1 div {
+    width: 71px;
+    height: 26px;
+    border: 1px solid #aaaaaa;
+    color: #323333;
+    text-indent: 12px;
+    margin-left: 15px;
+    background-image: url(blue-gou.png);
+    background-repeat: no-repeat;
+    background-position: 88% 50%;
+}
+
+.right-block2-2 {
+    width: 160px;
+    height: 55px;
+    float: left;
+    margin-left: 38px;
+    margin-top: 15px;
+}
+
+.right-block2-2 div div {
+    width: 121px;
+    height: 26px;
+    border: 1px solid #aaaaaa;
+    margin-left: 15px;
+    text-indent: 6px;
+    background-image: url(grey-gou.png);
+    background-repeat: no-repeat;
+    background-position: 93% 50%;
+}
+
+.right-block2-2 div:after, .right-block2:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.right-block2-2 div {
+    line-height: 26px;
+}
+
+.right-block2-2 > div:first-child {
+    margin-bottom: 5px;
+}
+
+.right-block2-2 div p, .right-block2-2 div div {
+    float: left;
+}
+
+.right-block2-2 div div {
+    color: #323333;
+}
+
+.right-block2-3 {
+    width: 29px;
+    height: 86px;
+    float: left;
+    color: white;
+    position: relative;
+}
+
+.right-block2-3 img {
+    margin-top: 24px;
+}
+
+.right-block2-3 p {
+    position: absolute;
+    top: 36px;
+    left: 13px;
+}
+
+.right-block2-4 {
+    width: 292px;
+    height: 55px;
+    float: left;
+    margin-top: 15px;
+    margin-left: 32px;
+}
+
+.right-block2-4-1:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.right-block2-4-1 {
+    margin-bottom: 5px;
+}
+
+.right-block2-4-1 > *, .right-block2-4-2 > * {
+    float: left;
+    line-height: 26px;
+}
+
+.right-block2-4 > div > div {
+    border: 1px solid #aaaaaa;
+}
+
+.right-block2-4-1 div:nth-child(2), .right-block2-4-2 div:last-child {
+    width: 121px;
+    height: 26px;
+    color: #323333;
+}
+
+.right-block2-4-2 div:last-child {
+    background-image: url(grey-gou.png);
+    background-repeat: no-repeat;
+    background-position: 93% 50%;
+}
+
+.right-block2-4-1 div:nth-child(4), .right-block2-4-2 div:nth-child(2) {
+    width: 71px;
+    height: 26px;
+    color: #323333;
+    background-image: url(grey-gou.png);
+    background-repeat: no-repeat;
+    background-position: 89% 50%;
+}
+
+.right-block2-4-1 div:nth-child(4), .right-block2-4-2 div:last-child {
+    margin-left: 8px;
+    text-indent: 6px;
+}
+
+.right-block2-4-1 div:nth-child(2), .right-block2-4-2 div:nth-child(2) {
+    margin-left: 15px;
+    margin-right: 15px;
+    text-indent: 6px;
+}
+
+.right-block2-5 {
+    width: 51px;
+    height: 26px;
+    background: #388ac1;
+    color: white;
+    text-align: center;
+    line-height: 26px;
+    -webkit-border-radius: 2px;
+    float: left;
+    margin-left: 30px;
+    margin-top: 30px;
+}
+
+/*right-block2 ends*/
+.right-block3 {
+    width: 891px;
+    height: 65px;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+.right-block3 div {
+    background: white;
+    float: left;
+    height: 65px;
+    border-top: 1px solid #aaaaaa;
+    border-left: 1px solid #aaaaaa;
+}
+
+.right-block3-1 {
+    width: 30px;
+    margin-right: 5px;
+    text-align: center;
+    line-height: 65px;
+}
+
+.right-block3-2 {
+    width: 110px;
+    margin-right: 5px;
+    font-family: 微软雅黑;
+}
+
+.right-block3-2 p {
+    text-align: center;
+}
+
+.right-block3-2 p:first-child {
+    color: #323333;
+    font-size: 12px;
+    margin-top: 11px;
+    margin-bottom: 5px;
+}
+
+.right-block3-2 img {
+    margin-top: 12px;
+    margin-left: 27px;
+}
+
+.right-block3-2 span {
+    font-size: 21px;
+    color: #ec6500;
+    background-image: url(cost.png);
+    background-repeat: no-repeat;
+    background-position: 3% 76%;
+    padding-left: 10px;
+}
+
+.right-block3-3 {
+    width: 129px;
+    color: #535353;
+    font-size: 12px;
+    font-family: 微软雅黑;
+}
+
+.right-block3-3 img {
+    margin-top: 17px;
+    margin-left: 18px;
+    float: left;
+}
+
+.right-block3-3 p {
+    float: left;
+    margin-top: 25px;
+    margin-left: 9px;
+}
+
+.right-block3 div:hover {
+    border-top: 4px solid #388ac1;
+}

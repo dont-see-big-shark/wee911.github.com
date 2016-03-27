@@ -3,27 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        #result_list li {display: inline-block;padding:10px;  background: red; color:#fff;margin-left:10px;height:30px;text-align: center;line-height: 30px;}
+    </style>
 </head>
 <body>
-<script>
-    var array = [21,45,65,12,67,43,98,56,23,76,43];
+    <input type="text" id="input">
+    <button id="left_in">左侧入</button>
+    <button id="right_in">右侧入</button>
+    <button id="left_out">左侧出</button>
+    <button id="right_out">右侧出</button>
+    <ul id="result_list">
 
-    var quicksort = function(arr){
-        if (arr.length <= 1) return arr;
+    </ul>
+    <script>
+        var manipulator = {
+            array : [32,68],
+            input : document.getElementById('input'),
+            getInputVal : function(){
+                if((/^\d+$/).test(input.value)){
+                        return input.value
+                }else{
+                    console.log('请输入数字');
+                    return false;
+                }
+            },
+            left_in:function(data){
+                if(data) {
+                    this.array.unshift(data);
+                }
+            },
+            right_in:function(data){
+                if(data) {
+                    this.array.push(data);
+                }
+            },
+            left_out:function(){
 
-        var pivot = Math.floor((arr.length -1)/2);
-        var val = arr[pivot], less = [], more = [];
+                    this.array.shift();
 
-        arr.splice(pivot, 1);
-        arr.forEach(function(e,i,a){
-            e < val ? less.push(e) : more.push(e);
+            },
+            right_out:function(){
+
+                    this.array.pop();
+
+            },
+            render:function(){
+                var list = "";
+                var result = document.getElementById('result_list');
+                this.array.forEach(function(el,i){
+                    list += "<li>"+el+"</li>";
+                });
+                result.innerHTML = list;
+                input.value="";
+            }
+        };
+
+        document.getElementById('left_in').addEventListener('click',function(){
+            manipulator.left_in(manipulator.getInputVal());
+            manipulator.render();
         });
 
-        return (quicksort(less)).concat([val],quicksort(more))
-    };
+        document.getElementById('right_in').addEventListener('click',function(){
+            manipulator.right_in(manipulator.getInputVal());
+            manipulator.render();
+        });
 
-    quicksort(array);
+        document.getElementById('left_out').addEventListener('click',function(){
+            manipulator.left_out();
+            manipulator.render();
+        });
 
-</script>
+        document.getElementById('right_out').addEventListener('click',function(){
+            manipulator.right_out();
+            manipulator.render();
+        });
+
+        manipulator.render();
+    </script>
 </body>
 </html>

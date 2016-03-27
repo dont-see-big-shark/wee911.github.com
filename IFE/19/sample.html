@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html,
+        body {
+            margin: 0 auto;
+            padding: 0px auto;
+            text-align: center;
+            font: 14px/1.5 "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
+        }
+
+        .stack {
+            margin-top: 30px;
+        }
+
+        .btn-group {
+            display: inline;
+        }
+
+        .demo {
+            width: 100%;
+            height: 30px;
+            position: relative;
+            top: 50px;
+            padding: 370px 0 50px 50px;
+            display: -webkit-flex;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .input-custom,
+        .btn-custom {
+            padding: 6px 20px;
+            color: #e74f4d;
+            border: 1px solid #e74f4d;
+            border-radius: 0;
+            background-color: #fff;
+        }
+
+        .input-custom:hover,
+        .btn-custom:hover {
+            color: #fff;
+            border-color: #fff;
+            background-color: #e74f4d;
+        }
+
+        .inverse {
+            color: #fff;
+            border-color: #fff;
+            background-color: #e74f4d;
+            animation-name: elem-fade-in;
+            animation-duration: .3s;
+            animation-timing-function: ease;
+            animation-iteration-count: 1;
+        }
+
+        @keyframes elem-fade-in {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+    </style>
+</head>
+<body>
+
+<form id="stack" class="stack" action="index.html" method="post">
+    <input id="elem" class="input-custom" type="text" name="elem" required="true" pattern="[0-9]" placeholder="10 - 100">
+    <div id="btn-group" class="btn-group">
+        <button type="button" id="shift" class="btn-custom">左出</button>
+        <button type="button" id="pop" class="btn-custom">右出</button>
+        <button type="button" id="unshift" class="btn-custom">左进</button>
+        <button type="button" id="push" class="btn-custom">右进</button>
+        <button type="button" id="sort" class="btn-custom">排序</button>
+    </div>
+</form>
+<section id="demo" class="demo">
+</section>
+
+<script>
+
+    //    var array = [21,45,65,12,67,43,98,56,23,76,43],
+    //        dom = {
+    //                input: document.getElementById('elem'),
+    //                demo: document.getElementById('demo'),
+    //                // convert to event-delegate
+    //                btn: document.getElementById('btn-group')
+    //            };
+    //
+    //    var quicksort = function(arr){
+    //        if (arr.length <= 1) return arr;
+    //
+    //        var pivot = Math.floor((arr.length -1)/2);
+    //        var val = arr[pivot], less = [], more = [];
+    //
+    //        arr.splice(pivot, 1);
+    //        arr.forEach(function(e,i,a){
+    //            e < val ? less.push(e) : more.push(e);
+    //        });
+    //
+    //        return (quicksort(less)).concat([val],quicksort(more))
+    //    };
+    //
+    //    quicksort(array);
+    (function () {
+        var data = [45, 23 , 40, 20, 50, 45, 87, 13, 34, 95, 94, 76, 98, 32, 43, 49, 26, 23, 56, 74, 92, 81, 63, 23, 64, 74, 14, 43, 29, 40, 53, 75, 32, 87, 45, 75, 39, 50, 10, 96, 45, 35, 64, 53, 65, 12, 34, 86, 48, 35, 52, 14, 54, 63, 91, 30, 40, 10, 96, 61, 40, 80, 15, 20, 47, 88, 100],
+                dom = {
+                    input: document.getElementById('elem'),
+                    demo: document.getElementById('demo'),
+                    // convert to event-delegate
+                    btn: document.getElementById('btn-group')
+                },
+                utils = {
+                    // validate number format
+                    toNum: function (num) {
+                        return parseInt(Array.prototype.filter.call(num.toString(10), function (item) {
+                            return item >= '0' && item <= '9';
+                        }).join(''));
+                    }
+                },
+        // render map with data
+                templateRender = function (targetIndex) {
+                    var helper = [],
+                            len = data.length;
+
+                    for (var i = 0;i < len;i++) {
+                        helper.push('<a id="block-' + i + '" href="#" ');
+                        helper.push('class="btn-custom');
+                        if (i === targetIndex) {
+                            helper.push(' inverse" ');
+                        } else {
+                            helper.push('" ');
+                        }
+                        helper.push('style="padding: ' + data[i]*1.8 + 'px 0">');
+                        helper.push('' + data[i] + '');
+                        helper.push('</a>');
+                        dom.demo.innerHTML = helper.join('');
+                    }
+
+                    dom.demo.innerHTML = helper.join('');
+                },
+        // event delegate mechanism
+                bindBtnHandle = function bindBtnHandle() {
+                    function removeCheck() {
+                        if (data.length <= 0) {
+                            alert('元素不足');
+                            return false;
+                        } else {
+                            return true;
+                        }
+                    }
+
+                    function insertCheck(value) {
+                        if (isNaN(value)) {
+                            alert('请输入正整数');
+                            return false;
+                        } else if (value < 10 || value > 100) {
+                            alert('超出范围');
+                            return false;
+                        } else if (data.length >= 60) {
+                            alert('元素过多');
+                            return false;
+                        } else {
+                            return true;
+                        }
+                    }
+
+                    dom.btn.onclick = function (e) {
+                        var event = e || window.event,
+                                target = event.target || event.srcElement,
+                                len = data.length,
+                                value,
+                                tmp;
+
+                        switch (target.id) {
+                            case 'shift':
+                                if (removeCheck()) {
+                                    data.shift();
+                                    templateRender(0);
+                                }
+                                break;
+                            case 'unshift':
+                                value = utils.toNum(dom.input.value);
+                                if (insertCheck(value)) {
+                                    data.unshift(value);
+                                    templateRender(0);
+                                }
+                                break;
+                            case 'pop':
+                                if (removeCheck()) {
+                                    data.pop();
+                                    templateRender(0);
+                                }
+                                break;
+                            case 'push':
+                                value = utils.toNum(dom.input.value);
+                                if (insertCheck(value)) {
+                                    data.push(value);
+                                    templateRender(0);
+                                }
+                                break;
+                            case 'sort':
+                                var i = 0;
+                                var outeranimation = setInterval(function () {
+                                    if (i >= len) {
+                                        clearInterval(outeranimation);
+                                        return;
+                                    }
+
+                                    for (var j = i + 1; j < len;j++) {
+                                        if (data[j] < data[i]) {
+                                            tmp = data[i];
+                                            data[i] = data[j];
+                                            data[j] = tmp;
+                                        }
+                                    }
+                                    templateRender(i);
+                                    i++;
+                                }, 300);
+                                break;
+                            default:
+                                break;
+                        }
+                    };
+                };
+
+        (function () {
+            templateRender(0);
+            bindBtnHandle();
+        }());
+    }());
+
+</script>
+</body>
+</html>
