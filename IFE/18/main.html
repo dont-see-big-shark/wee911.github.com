@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var array = [21,45,65,12,67,43,98,56,23,76,43];
+
+    var quicksort = function(arr){
+        if (arr.length <= 1) return arr;
+
+        var pivot = Math.floor((arr.length -1)/2);
+        var val = arr[pivot], less = [], more = [];
+
+        arr.splice(pivot, 1);
+        arr.forEach(function(e,i,a){
+            e < val ? less.push(e) : more.push(e);
+        });
+
+        return (quicksort(less)).concat([val],quicksort(more))
+    };
+
+    quicksort(array);
+
+</script>
+</body>
+</html>
