@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>任务二十二：JavaScript和树（一）</title>
+    <style>
+    html,
+    body {
+        height: 100%;
+        width: 100%;
+        position: relative;
+        text-align: center;
+    }
+    
+    div {
+        width: calc(50% - 22.5px);
+        height: calc(100% - 30px);
+        max-width: 700px;
+        max-height: 300px;
+        margin: 15px 0 0 15px;
+        position: relative;
+        float: left;
+        border: 1px solid;
+        box-sizing: border-box;
+        background-color: #fff;
+    }
+    
+    #root {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: 50px auto 0;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <div>
+            <div>
+                <div id="child-1"></div>
+                <div></div>
+            </div>
+            <div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <div>
+            <div>
+                <div></div>
+                <div></div>
+            </div>
+            <div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+    <p>
+        <button onclick="traversal('pre')">前序遍历</button>
+        <button onclick="traversal('in')">中序遍历</button>
+        <button onclick="traversal('post')">倒序遍历</button>
+        <label for="set-time">闪烁间隔</label>
+        <input id="set-time" type="number" value="1000">ms
+    </p>
+    <script>
+    var interval;
+
+    var changeBkColor = function(divList) {
+        var length = divList.length,
+            i = 0;
+        divList[i++].style.backgroundColor = "blue";
+        interval = setInterval(function() {
+            if (i < length) {
+                divList[i - 1].style.backgroundColor = '#fff';
+                divList[i++].style.backgroundColor = "blue";
+            } else {
+                clearInterval(interval);
+                divList[i - 1].style.backgroundColor = '#fff';
+            }
+        }, document.getElementById('set-time').value)
+    };
+    
+    var traversal = function(type) {
+        var divLi = [];
+        // reset();
+        var root = document.getElementById('root');
+        switch (type) {
+            case 'pre':
+                divLi.push(root);
+                pre_traversal(root.children, divLi);
+                break;
+            case 'in':
+                in_traversal(root, divLi);
+                break;
+            case 'post':
+                post_traversal(root, divLi);
+                break;
+            default:
+        }
+        changeBkColor(divLi);
+    }
+
+    function pre_traversal(el, divli) {
+
+        [].forEach.call(el, function(i, index) {
+            divli.push(i);
+            pre_traversal(i.children, divli);
+        })
+    }
+
+    function in_traversal(el, divLi) {
+        if (el) {
+            in_traversal(el.firstElementChild, divLi);
+            divLi.push(el);
+            in_traversal(el.lastElementChild, divLi);
+        }
+
+    }
+
+    function post_traversal(el, divLi) {
+        if (el) {
+            post_traversal(el.firstElementChild, divLi);
+            post_traversal(el.lastElementChild, divLi);
+            divLi.push(el);
+        }
+    };
+
+    function reset() {
+        clearInterval(interval);
+        var divs = document.getElementsByTagName('div');
+        for (var i = divs.length - 1; i >= 0; i--) {
+            divs[i].style.backgroundColor = '#fff';
+        }
+    };
+    </script>
+</body>
+
+</html>
